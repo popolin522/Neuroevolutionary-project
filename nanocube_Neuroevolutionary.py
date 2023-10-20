@@ -76,7 +76,7 @@ def PotentialEnergy(args):
       fix 3 all rigid/nve/small molecule langevin ${tempvalue} ${tempvalue} 100.0 1530917
       fix 2 all enforce2d #2D simulation
       fix_modify 3 bodyforces early
-      #fix 4 all ave/time 1 1 1 c_PotentialEnergy c_temperature_val c_f1 c_f2 file results""" + str(index) +""".txt #not sure wtf is f1 f2
+      
       fix 4 all ave/time 1 1 1 c_PotentialEnergy c_temperature_val file results""" + str(index) +""".txt 
       run 10000 #1*10^5
       unfix 3
@@ -89,7 +89,7 @@ def PotentialEnergy(args):
     lmp.commands_string(lammpsString_run)
 
     PotentialEnergy = lmp.numpy.extract_compute('PotentialEnergy',0,0)
-    lmp.close() #clear lammps instance here. otherwise your memory will be fucked
+    lmp.close() #clear lammps instance here. otherwise your memory will be screwed
     # print(CubeCubeEnergy)
     os.chdir("..")
 
